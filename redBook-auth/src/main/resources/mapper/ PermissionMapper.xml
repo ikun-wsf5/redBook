@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trxy.redbookauth.mapper.PermissionMapper">
+    <insert id="insert" parameterType="com.trxy.redbookauth.entity.dto.PermissionDO">
+        INSERT INTO permission (parent_id, name, type, menu_url, menu_icon, sort, permission_key, status, create_time, update_time, is_deleted)
+        VALUES (#{parentId}, #{name}, #{type}, #{menuUrl}, #{menuIcon}, #{sort}, #{permissionKey}, #{status}, #{createTime}, #{updateTime}, #{isDeleted})
+    </insert>
+    <update id="update" parameterType="com.trxy.redbookauth.entity.dto.PermissionDO">
+        UPDATE permission
+        SET parent_id = #{parentId}, name = #{name}, type = #{type}, menu_url = #{menuUrl}, menu_icon = #{menuIcon}, sort = #{sort}, permission_key = #{permissionKey}, status = #{status}, update_time = #{updateTime}, is_deleted = #{isDeleted}
+        WHERE id = #{id}
+    </update>
+    <delete id="delete" parameterType="Long">
+        DELETE FROM permission WHERE id = #{id}
+    </delete>
+    <select id="selectById" parameterType="Long" resultType="com.trxy.redbookauth.entity.dto.PermissionDO">
+        SELECT * FROM permission WHERE id = #{id}
+    </select>
+    <select id="selectAppEnabledList" resultType="com.trxy.redbookauth.entity.dto.PermissionDO">
+        select id, name, permission_key from t_permission
+        where status = 0 and type = 3 and is_deleted = 0
+    </select>
+</mapper>
