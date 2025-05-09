@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    username: root # 数据库用户名
+    password: 123456 # 数据库密码
+  data:
+    redis:
+      password: 123456
+aliyun:
+  access-key-id: LTAI5tMDZuXYWjigjtKc3LXP
+  access-key-secret: sTYGZrx52YZjNxFF3WqvaYFHcGMa4H
