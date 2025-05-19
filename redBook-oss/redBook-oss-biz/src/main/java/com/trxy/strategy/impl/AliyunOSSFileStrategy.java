@@ -14,10 +14,11 @@ import java.util.UUID;
 
 @Slf4j
 public class AliyunOSSFileStrategy implements FileStrategy {
-    @Resource
-    private OSS ossClient;
+
     @Resource
     private AliOssProperties aliOssProperties;
+    @Resource
+    private OSS ossClient;
 
     @Override
     public String uploadFile(MultipartFile file, String bucketName) {

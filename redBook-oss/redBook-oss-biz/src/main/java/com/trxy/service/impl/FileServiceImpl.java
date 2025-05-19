@@ -1,5 +1,6 @@
 package com.trxy.service.impl;
 
+import com.trxy.config.AliOssProperties;
 import com.trxy.response.Response;
 import com.trxy.service.FileService;
 import com.trxy.strategy.FileStrategy;
@@ -14,11 +15,12 @@ public class FileServiceImpl implements FileService {
 
     @Resource
     private FileStrategy fileStrategy;
+    @Resource
+    private AliOssProperties aliOssProperties;
 
     @Override
     public String uploadFile(MultipartFile file) {
         // 上传文件到
-        fileStrategy.uploadFile(file, "redBook");
-
+     return  fileStrategy.uploadFile(file, aliOssProperties.getBucketName());
     }
 }

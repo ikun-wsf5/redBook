@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trxy.mapper.UserRoleRelMapper">
+    <insert id="insert" parameterType="com.trxy.entity.dto.UserRoleRelDO">
+        INSERT INTO user_role_rel (user_id, role_id, create_time, update_time, is_deleted)
+        VALUES (#{userId}, #{roleId}, #{createTime}, #{updateTime}, #{isDeleted})
+    </insert>
+    <update id="update" parameterType="com.trxy.entity.dto.UserRoleRelDO">
+        UPDATE user_role_rel
+        SET user_id = #{userId}, role_id = #{roleId}, update_time = #{updateTime}, is_deleted = #{isDeleted}
+        WHERE id = #{id}
+    </update>
+    <delete id="delete" parameterType="Long">
+        DELETE FROM user_role_rel WHERE id = #{id}
+    </delete>
+    <select id="selectById" parameterType="Long" resultType="com.trxy.entity.dto.UserRoleRelDO">
+        SELECT * FROM user_role_rel WHERE id = #{id}
+    </select>
+</mapper>

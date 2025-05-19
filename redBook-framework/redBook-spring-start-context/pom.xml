@@ -1,22 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <!-- 指定父项目 -->
     <parent>
         <groupId>com.trxy</groupId>
-        <artifactId>redBook</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <artifactId>redBook-framework</artifactId>
+        <version>${revision}</version>
     </parent>
 
-    <artifactId>redBook-spring-start-context</artifactId>
+    <!-- 指定打包方式 -->
     <packaging>jar</packaging>
 
-    <name>redBook-spring-start-context</name>
-    <url>http://maven.apache.org</url>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <artifactId>redBook-spring-start-context</artifactId>
+    <name>${project.artifactId}</name>
+    <description>平台通用模块，如一些通用枚举、工具类等等</description>
 
     <dependencies>
         <dependency>
@@ -34,7 +31,10 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-core</artifactId>
+        </dependency>
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>

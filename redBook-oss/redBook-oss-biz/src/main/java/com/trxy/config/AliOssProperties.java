@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 @Data
 public class AliOssProperties {
     private String endpoint;
-    private String accessKey;
-    private String secretKey;
+    private String accessKeyId;
+    private String accessKeySecret;
     private String bucketName;
+
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trxy.mapper.FollowingMapper">
+    <insert id="insert" parameterType="com.trxy.entity.dto.FollowingDO">
+        INSERT INTO t_following (user_id, following_user_id, create_time)
+        VALUES (#{userId}, #{followingUserId}, #{createTime})
+    </insert>
+    <delete id="delete" parameterType="com.trxy.entity.dto.FollowingDO">
+        DELETE FROM t_following
+        <where>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="userId != null">
+                AND user_id = #{userId}
+            </if>
+            <if test="followingUserId != null">
+                AND following_user_id = #{followingUserId}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+        </where>
+    </delete>
+
+    <update id="update" parameterType="com.trxy.entity.dto.FollowingDO">
+        UPDATE t_following
+        SET user_id = #{userId}, following_user_id = #{followingUserId}, create_time = #{createTime}
+        WHERE id = #{id}
+    </update>
+    <select id="selectById" parameterType="java.lang.Long" resultType="com.trxy.entity.dto.FollowingDO">
+        SELECT * FROM t_following WHERE id = #{id}
+    </select>
+    <select id="selectByUserId" resultType="com.trxy.entity.dto.FollowingDO">
+        select
+            user_id, following_user_id, create_time
+        from t_following
+        where user_id = #{userId,jdbcType=BIGINT}
+    </select>
+    <select id="selectCountByUserId" resultType="java.lang.Long">
+        select count(1) from t_following where user_id = #{userId}
+    </select>
+    <select id="selectPageListByUserId"  parameterType="map" resultType="com.trxy.entity.dto.FollowingDO">
+        select following_user_id from t_following
+        where user_id = #{userId} order by create_time desc limit #{offset}, #{limit}
+    </select>
+    <select id="selectAllByUserId" resultType="com.trxy.entity.dto.FollowingDO">
+        select following_user_id, create_time from t_following
+        where user_id = #{userId} limit 1000
+    </select>
+</mapper>

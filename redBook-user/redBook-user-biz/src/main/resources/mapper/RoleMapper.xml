@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trxy.mapper.RoleMapper">
+    <insert id="insert" parameterType="com.trxy.entity.dto.RoleDO">
+        INSERT INTO role (role_name, role_key, status, sort, remark, create_time, update_time, is_deleted)
+        VALUES (#{roleName}, #{roleKey}, #{status}, #{sort}, #{remark}, #{createTime}, #{updateTime}, #{isDeleted})
+    </insert>
+    <update id="update" parameterType="com.trxy.entity.dto.RoleDO">
+        UPDATE role
+        SET role_name = #{roleName}, role_key = #{roleKey}, status = #{status}, sort = #{sort}, remark = #{remark}, update_time = #{updateTime}, is_deleted = #{isDeleted}
+        WHERE id = #{id}
+    </update>
+    <delete id="delete" parameterType="Long">
+        DELETE FROM role WHERE id = #{id}
+    </delete>
+    <select id="selectById" parameterType="Long" resultType="com.trxy.entity.dto.RoleDO">
+        SELECT * FROM role WHERE id = #{id}
+    </select>
+    <select id="selectEnabledList" resultType="com.trxy.entity.dto.RoleDO">
+        select id, role_key, role_name
+        from t_role
+        where status = 0 and is_deleted = 0
+    </select>
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trxy.mapper.NoteCountDOMapper">
+  <select id="selectById" resultType="com.trxy.entity.dto.NoteCountDO">
+    SELECT * FROM t_note_count WHERE id = #{id}
+  </select>
+  <update id="updateLikeTotal">
+    UPDATE t_note_count SET like_total = like_total + 1 WHERE note_id = #{noteId}
+  </update>
+  <update id="updateCollectTotal">
+    UPDATE t_note_count SET collect_total = collect_total + 1 WHERE note_id = #{noteId}
+  </update>
+  <update id="updateCommentTotal">
+    UPDATE t_note_count SET comment_total = comment_total + 1 WHERE note_id = #{noteId}
+  </update>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trxy.mapper.UserCountDOMapper">
+    <insert id="insertOrUpdateFansTotalByUserId">
+      INSERT INTO t_user_count (user_id, fans_total)
+      VALUES (#{userId}, #{count})
+        ON DUPLICATE KEY UPDATE fans_total = fans_total + (#{count});
+    </insert>
+  <insert id="insertOrUpdateFollowingTotalByUserId">
+    INSERT INTO t_user_count (user_id, following_total)
+    VALUES (#{userId}, #{count})
+      ON DUPLICATE KEY UPDATE following_total = following_total + (#{count});
+  </insert>
+  <select id="selectById" resultType="com.trxy.entity.dto.UserCountDO">
+    SELECT * FROM t_user_count WHERE id = #{id}
+  </select>
+  <update id="updateFansTotal">
+    UPDATE t_user_count SET fans_total = fans_total + 1 WHERE user_id = #{userId}
+  </update>
+  <update id="updateFollowingTotal">
+    UPDATE t_user_count SET following_total = following_total + 1 WHERE user_id = #{userId}
+  </update>
+  <update id="updateNoteTotal">
+    UPDATE t_user_count SET note_total = note_total + 1 WHERE user_id = #{userId}
+  </update>
+  <update id="updateLikeTotal">
+    UPDATE t_user_count SET like_total = like_total + 1 WHERE user_id = #{userId}
+  </update>
+  <update id="updateCollectTotal">
+    UPDATE t_user_count SET collect_total = collect_total + 1 WHERE user_id = #{userId}
+  </update>
+</mapper>

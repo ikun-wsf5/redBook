@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trxy.mapper.FansMapper">
+    <insert id="insert" parameterType="com.trxy.entity.dto.FansDO">
+        INSERT INTO t_fans (user_id, fans_user_id, create_time)
+        VALUES (#{userId}, #{fansUserId}, #{createTime})
+    </insert>
+
+    <delete id="delete" parameterType="com.trxy.entity.dto.FansDO">
+        DELETE FROM t_fans
+        <where>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="userId != null">
+                AND user_id = #{userId}
+            </if>
+            <if test="fansUserId != null">
+                AND fans_user_id = #{fansUserId}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+        </where>
+    </delete>
+
+    <update id="update" parameterType="com.trxy.entity.dto.FansDO">
+        UPDATE t_fans
+        SET user_id = #{userId}, fans_user_id = #{fansUserId}, create_time = #{createTime}
+        WHERE id = #{id}
+    </update>
+    <select id="selectById" parameterType="java.lang.Long" resultType="com.trxy.entity.dto.FansDO">
+        SELECT * FROM t_fans WHERE id = #{id}
+    </select>
+    <select id="selectCountByUserId" resultType="java.lang.Long">
+        select count(1) from t_fans where user_id = #{userId}
+    </select>
+    <select id="selectPageListByUserId" resultType="com.trxy.entity.dto.FansDO">
+        select fans_user_id from t_fans
+        where user_id = #{userId} order by create_time desc limit #{offset}, #{limit}
+    </select>
+    <select id="select5000FansByUserId" resultType="com.trxy.entity.dto.FansDO">
+        select fans_user_id, create_time from t_fans
+        where user_id = #{userId} order by create_time desc limit 5000
+    </select>
+</mapper>

@@ -9,6 +9,6 @@ storage:
   aliyun:
     oss:
       endpoint: oss-cn-hangzhou.aliyuncs.com
-      access-key-id: {aliyun.oss.access-key-id}
-      access-key-secret: {aliyun.oss.access-key-secret}
-      bucket-name: {aliyun.oss.bucket-name}
+      access-key-id: ${aliyun.oss.access-key-id}
+      access-key-secret: ${aliyun.oss.access-key-secret}
+      bucket-name: ${aliyun.oss.bucket-name}

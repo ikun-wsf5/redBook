@@ -7,10 +7,6 @@ public class RedisKeyConstants {
      */
     private static final String VERIFICATION_CODE_KEY_PREFIX = "verification_code:";
     /**
-     * 小书全局 ID 生成器 KEY
-     */
-    public static final String REDBOOK_ID_GENERATOR_KEY = "red_book_id_generator";
-    /**
      * 用户角色数据 KEY 前缀
      */
     private static final String USER_ROLES_KEY_PREFIX = "user:roles:";

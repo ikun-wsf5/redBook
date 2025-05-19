@@ -23,6 +23,7 @@
         <module>redBook-common</module>
         <module>redBook-spring-start-logoperation</module>
         <module>redBook-spring-start-jackson</module>
+        <module>redBook-spring-start-context</module>
     </modules>
 
 </project>

@@ -21,10 +21,13 @@
         <module>redBook-auth</module>
         <module>redBook-framework</module>
         <module>redBook-gateway</module>
-        <module>redBook-framework/redBook-spring-start-context</module>
         <module>redBook-oss</module>
-        <module>redBook-oss/redBook-oss-api</module>
-        <module>redBook-oss/redBook-oss-biz</module>
+        <module>redBook-user</module>
+        <module>redBook-distributed-id-generator</module>
+        <module>redBook-kv</module>
+        <module>redBook-note</module>
+        <module>redBook-user-relation</module>
+        <module>redBook-count</module>
     </modules>
 
     <properties>
@@ -60,11 +63,26 @@
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <activation.version>1.1.1</activation.version>
         <jaxb-runtime.version>2.3.3</jaxb-runtime.version>
+        <feign-form.version>3.8.0</feign-form.version>
+        <buffertrigger.version>0.2.21</buffertrigger.version>
     </properties>
 
     <!-- 统一依赖管理 -->
     <dependencyManagement>
+
         <dependencies>
+            <!-- 快手 Buffer Trigger -->
+            <dependency>
+                <groupId>com.github.phantomthief</groupId>
+                <artifactId>buffer-trigger</artifactId>
+                <version>${buffertrigger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.trxy</groupId>
+                <artifactId>redbook-user-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
             <!-- Druid 数据库连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -87,6 +105,31 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.trxy</groupId>
+                <artifactId>redBook-oss-api</artifactId>
+                <version>${version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.trxy</groupId>
+                <artifactId>redBook-kv-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.openfeign.form</groupId>
+                <artifactId>feign-form</artifactId>
+                <version>${feign-form.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.trxy</groupId>
+                <artifactId>redbook-user-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.trxy</groupId>
+                <artifactId>redBook-distributed-id-generator-api</artifactId>
+                <version>${revision}</version>
             </dependency>
             <!-- 业务接口日志组件 -->
             <dependency>
@@ -220,6 +263,11 @@
                 <groupId>com.alibaba.boot</groupId>
                 <artifactId>nacos-config-spring-boot-starter</artifactId>
                 <version>${nacos-config.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${spring-boot.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
